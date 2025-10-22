@@ -27,3 +27,18 @@ export const createUser = async (req: Request, res: Response) => {
     const newUser = await UserService.create({ email, username, password });
     res.status(201).json(newUser);
 }
+
+export const deleteUser = async (req: Request, res: Response) => {
+    const { id } = req.params as { id: string }
+    try {
+        await UserService.remove(id)
+
+        return res.json({
+            message: 'Usuário deletado com sucesso!'
+        });
+    } catch (error: any) {
+        return res.json({
+            message: error.message
+        });
+    }
+}

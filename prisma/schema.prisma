@@ -19,3 +19,26 @@ model User {
     image       String?
     @@map("users")
 }
+
+model UnidadeEscolar {
+    id  String @id @default(uuid())
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now())
+    nome String
+    logradouro String?
+    numero      String?
+    bairro      String?
+    municipio   String?
+    estado      String?
+    turmas      Turma[]
+    @@map("unidades_escolares")
+}
+
+model Turma {
+    id  String @id @default(uuid())
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now())
+    unidade_id  String
+    unidadeEscolar  UnidadeEscolar @relation(fields: [unidade_id], references: [id])
+    @@map("turmas")
+}
