@@ -47,14 +47,24 @@ export class UnidadeController {
         }
     }
 
-    // static async updateUnidade(request: Request, response: Response) {
-    //     const { id } = request.params as { id: string };
-    //     const { nome, logradouro, numero, bairro, municipio, estado } = request.body as UnidaEscolarType;
-    //     const unidade = await UnidadeService.updateUnidade(id, { nome, logradouro, numero, bairro, municipio, estado });
-    //     response.status(200).json({
-    //         unidade
-    //     });
-    // }   
+    async updateUnidade(request: Request, response: Response) {
+        const { id } = request.params as { id: string };
+        const { nome, logradouro, numero, bairro, municipio, estado } = request.body as UnidaEscolarType;
+        const unidade = this.unidadeService.updateUnidade(id, { nome, logradouro, numero, bairro, municipio, estado });
+        response.status(200).json({
+            unidade
+        });
+    }   
+
+    async getUnidadeById(request: Request, response: Response) {
+        const user = request.user;
+        console.log('User making the request:', user);
+        const { id } = request.params as { id: string };
+        const unidade = await this.unidadeService.getUnidadeById(id);
+        response.status(200).json({
+            unidade
+        });
+    }
 
     async deleteUnidade(request: Request, response: Response) {
         const { id } = request.params as { id: string };

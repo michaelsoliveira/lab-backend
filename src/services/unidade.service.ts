@@ -64,7 +64,7 @@ export class UnidadeService {
         return unidade;
     }
 
-    async getUnidade(id: string): Promise<UnidadeEscolar | null> {
+    async getUnidadeById(id: string): Promise<UnidadeEscolar | null> {
         const unidade = await this.prisma.unidadeEscolar.findUnique({
             where: { id }
         });

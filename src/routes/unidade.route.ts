@@ -10,6 +10,7 @@ const unidadeController = new UnidadeController(unidadeService);
 const router = Router();
 
 router.get('/list-all', Authentication(), unidadeController.listUnidades.bind(unidadeController));
+router.get('/:id', Authentication(), unidadeController.getUnidadeById.bind(unidadeController));
 router.post('/create', unidadeController.createUnidade.bind(unidadeController));
 // router.put('/update/:id', unidadeController.updateUnidade.bind(unidadeController));
 router.delete('/delete/:id', unidadeController.deleteUnidade.bind(unidadeController));
