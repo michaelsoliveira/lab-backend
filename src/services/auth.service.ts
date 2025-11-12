@@ -1,7 +1,7 @@
 import prisma from '../prisma/client'
 import * as bcrypt from 'bcrypt'
 import * as UserService from './users.service'
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const JWT_SECRET = process.env.JWT_SECRET || "secret"
 

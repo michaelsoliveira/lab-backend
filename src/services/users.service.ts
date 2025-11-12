@@ -1,4 +1,5 @@
 import prisma from '../prisma/client';
+import * as bcrypt from 'bcrypt';
 
 type UpsertUser = {
     email?: string;
@@ -21,7 +22,8 @@ export async function getByEmail(email: string) {
 export async function create(data: { 
     email: string; username?: string; password: string; 
 }) {
-    return prisma.user.create({ data });
+    const passwordHashed = await bcrypt.hash(data.password, 10);
+    return prisma.user.create({ data: { ...data, password: passwordHashed } });
 }
 
 export async function update(id: string, data: UpsertUser) {
