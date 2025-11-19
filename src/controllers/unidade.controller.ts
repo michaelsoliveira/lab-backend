@@ -1,6 +1,5 @@
 import { UnidaEscolarType, UnidadeService } from "../services/unidade.service";
 import { Request, Response } from "express";
-
 export class UnidadeController {
     constructor(private readonly unidadeService: UnidadeService) {}
 
